@@ -1,0 +1,22 @@
+function START(){
+    navigator.mediaDevices.getUserMedia( {audio : true } );
+    classifier = ml5.soundClassifier('https://teachablemachine.withgoogle.com/models/xRsG4FmHL/model.json', loaded);
+}
+ function loaded(){
+    classifier.classify(got_result);
+ }
+
+ function got_result(error, result){
+    if(error){
+        console.error(error);
+    }
+    else{
+        console.log(result);
+        document.getElementById("result_label").innerHTML = "Detected voice of - " + result[0].label;
+        
+    }
+  
+     
+   
+ }
+
